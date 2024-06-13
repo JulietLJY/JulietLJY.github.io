@@ -67,46 +67,46 @@
           </tr>
           </tbody></table>
         <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          
-          <!-- 2.1 MoTCoder -->
+
+          <!-- 2.1 quickllama -->
           <tr class="single_element" style="width:70%">
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="motcoder_stop()" onmouseover="motcoder_start()">
+            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="quickllama_stop()" onmouseover="quickllama_start()">
               <div class="one" style="display: inline;vertical-align:middle;">
-                <div class="two" id='motcoder' style="display: inline;vertical-align:middle;">
-                  <img src='images/MoTCoder-impression.png' width-max="480" width="100%" vertical-align="middle">
+                <div class="two" id='quickllama' style="display: inline;vertical-align:middle;">
+                  <img src='quickllama_framework.png' width-max="480" width="100%" vertical-align="middle">
                 </div>
-                  <img src='images/MoTCoder-framework.png' width-max="480" width="100%" vertical-align="middle">
+                  <img src='quickllama_harrypotter_details.png' width-max="480" width="100%" vertical-align="middle">
               </div>
               <script type="text/javascript">
-                function motcoder_start() {
-                  document.getElementById('motcoder').style.opacity = "1";
+                function quickllama_start() {
+                  document.getElementById('quickllama').style.opacity = "1";
                 }
 
-                function motcoder_stop() {
-                  document.getElementById('motcoder').style.opacity = "0";
+                function quickllama_stop() {
+                  document.getElementById('quickllama').style.opacity = "0";
                 }
-                motcoder_stop()
+                quickllama_stop()
               </script>
             </td>
             <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>Elevating Large Language Models with Modular of Thought for Challenging Programming Tasks</papertitle>
+                <papertitle>QuickLLaMA: Query-aware Inference Acceleration for Large Language Models</papertitle>
               <br>
               <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Jiaya Jia
               <br>
               <p></p>
               <em>Preprint</em>, 2024
               <br>
-              <a href="https://arxiv.org/abs/2401.02611" target="blank_">Paper</a> /
-              <a href="https://huggingface.co/JingyaoLi/MoTCoder-15B-v1.0">Model </a> /
-              <a href="https://github.com/dvlab-research/MoTCoder/" target="blank_">Code</a> 
+              <a href="https://arxiv.org/pdf/2406.07528" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/Q-LLM" target="blank_">Code</a> 
               <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dvlab-research/Prompt-Highlighter?style=social">  -->
             <p></p>
             <p style="font-size:16px;"><em>
-              We introduce a pioneering framework for Modular-of-Thought instruction tuning, designed to promote the decomposition of tasks into logical sub-tasks and sub-modules, significantly improving both the modularity and correctness of the generated solutions.
+              Our QuickLLaMA beat StreamLLM series and established new SOTA on LongBench, InfiniteBench and Needle-in-a-Haystack task.
               </em>
               </p>
             </td>
           </tr>
+
 
           <!-- 2.2 MOOD-->
           <tr class="single_element" style="width:70%">
@@ -213,7 +213,7 @@
               <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia
               <br>
               <p></p>
-              <em>Preprint</em>, 2024
+              <em>TPAMI</em>, 2024
               <br>
               <a href="https://arxiv.org/abs/2401.02611" target="blank_">Paper</a> /
               <a href="https://github.com/dvlab-research/MOOD">Code</a> 
@@ -226,6 +226,45 @@
             </td>
           </tr>
 
+          <!-- 2.4-5 MoTCoder -->
+          <tr class="single_element" style="width:70%">
+            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="motcoder_stop()" onmouseover="motcoder_start()">
+              <div class="one" style="display: inline;vertical-align:middle;">
+                <div class="two" id='motcoder' style="display: inline;vertical-align:middle;">
+                  <img src='images/MoTCoder-impression.png' width-max="480" width="100%" vertical-align="middle">
+                </div>
+                  <img src='images/MoTCoder-framework.png' width-max="480" width="100%" vertical-align="middle">
+              </div>
+              <script type="text/javascript">
+                function motcoder_start() {
+                  document.getElementById('motcoder').style.opacity = "1";
+                }
+
+                function motcoder_stop() {
+                  document.getElementById('motcoder').style.opacity = "0";
+                }
+                motcoder_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:55%;vertical-align:middle">
+                <papertitle>Elevating Large Language Models with Modular of Thought for Challenging Programming Tasks</papertitle>
+              <br>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Jiaya Jia
+              <br>
+              <p></p>
+              <em>Preprint</em>, 2024
+              <br>
+              <a href="https://arxiv.org/abs/2401.02611" target="blank_">Paper</a> /
+              <a href="https://huggingface.co/JingyaoLi/MoTCoder-15B-v1.0">Model </a> /
+              <a href="https://github.com/dvlab-research/MoTCoder/" target="blank_">Code</a> 
+              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dvlab-research/Prompt-Highlighter?style=social">  -->
+            <p></p>
+            <p style="font-size:16px;"><em>
+              We introduce a pioneering framework for Modular-of-Thought instruction tuning, designed to promote the decomposition of tasks into logical sub-tasks and sub-modules, significantly improving both the modularity and correctness of the generated solutions.
+              </em>
+              </p>
+            </td>
+          </tr>
 
           <!-- 2.5 TagCLIP-->
           <tr class="single_element" >
@@ -303,6 +342,10 @@
           </tr>
           
         </tbody></table>
+
+
+
+
 
         <!-- <p></p>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
