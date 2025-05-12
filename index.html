@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <table style="width:90%;max-width:1280px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+  <table style="width:100%;max-width:1280px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
 
@@ -60,380 +60,212 @@
 
         <!-- 2 Research -->
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
+          <tr>
             <td style="padding:1%;width:100%;vertical-align:middle">
               <heading>Selected Research</heading>
             </td>
           </tr>
-          </tbody></table>
-        <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-
-          <!-- 2.1 quickllama -->
-          <tr class="single_element" style="width:70%">
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="quickllama_stop()" onmouseover="quickllama_start()">
-              <div class="one" style="display: inline;vertical-align:middle;">
-                <div class="two" id='quickllama' style="display: inline;vertical-align:middle;">
-                  <img src='images/quickllama_framework.png' width-max="480" width="100%" vertical-align="middle">
-                </div>
-                  <img src='images/quickllama_harrypotter_details.png' width-max="480" width="100%" vertical-align="middle">
-              </div>
-              <script type="text/javascript">
-                function quickllama_start() {
-                  document.getElementById('quickllama').style.opacity = "1";
-                }
-
-                function quickllama_stop() {
-                  document.getElementById('quickllama').style.opacity = "0";
-                }
-                quickllama_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>QuickLLaMA: Query-aware Inference Acceleration for Large Language Models</papertitle>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Han Shi, Xin Jiang, Zhenguo Li, Hong Xu, Jiaya Jia
-              <br>
-              <p></p>
-              <em>Preprint</em>, 2024
-              <br>
-              <a href="https://arxiv.org/abs/2406.07528" target="blank_">Paper</a> /
-              <a href="https://github.com/dvlab-research/Q-LLM" target="blank_">Code</a> 
-              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dvlab-research/Prompt-Highlighter?style=social">  -->
-            <p></p>
-            <p style="font-size:16px;"><em>
-              Our QuickLLaMA beat StreamLLM series and established new SOTA on LongBench, InfiniteBench and Needle-in-a-Haystack task.
-              </em>
-              </p>
-            </td>
-          </tr>
-
-
-          <!-- 2.2 MOOD-->
-          <tr class="single_element" style="width:70%">
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="mood_stop()" onmouseover="mood_start()">
-              <div class="one" style="display: inline;vertical-align:middle;">
-                <div class="two" id='mood' style="display: inline;vertical-align:middle;">
-                  <img src='images/MOOD-near-distribution.png' width-max="480" width="100%" vertical-align="middle">
-                </div>
-                  <img src='images/MOOD-impression.png' width-max="480" width="100%" vertical-align="middle">
-              </div>
-              <script type="text/javascript">
-                function mood_start() {
-                  document.getElementById('mood').style.opacity = "1";
-                }
-
-                function mood_stop() {
-                  document.getElementById('mood').style.opacity = "0";
-                }
-                mood_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>Rethinking Out-of-Distribution Detection: Masked Image Modeling is All You Need</papertitle>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shaozuo Yu, Zexin He, Shu Liu, Jiaya Jia
-              <br>
-              <p></p>
-              <em>CVPR</em>, 2023
-              <br>
-              <a href="https://arxiv.org/abs/2302.02615" target="blank_">Paper</a> /
-              <a href="https://cvpr2023.thecvf.com/virtual/2023/poster/23070" target="blank_">Project Page</a> / 
-              <a href="https://github.com/dvlab-research/MOOD">Code </a> 
-              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dvlab-research/MOOD?style=social"> -->
-            <p></p>
-            <p style="font-size:16px;"><em>
-              In this work, we find surprisingly that simply using reconstruction-based methods benefits the model in learning intrinsic data distributions of the ID dataset, which could boost the performance of OOD detection significantly. 
-              </em>
-              </p>
-            </td>
-          </tr>
-
-          <!-- 2.3 bal-->
-          <tr class="single_element" style="width:70%">
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="bal_stop()" onmouseover="bal_start()">
-              <div class="one" style="display: inline;vertical-align:middle;">
-                <div class="two" id='bal' style="display: inline;vertical-align:middle;">
-                  <img src='images/BAL-cdd.png' width-max="480" width="100%" vertical-align="middle">
-                </div>
-                  <img src='images/BAL-framework.png' width-max="480" width="100%" vertical-align="middle">
-              </div>
-              <script type="text/javascript">
-                function bal_start() {
-                  document.getElementById('bal').style.opacity = "1";
-                }
-
-                function bal_stop() {
-                  document.getElementById('bal').style.opacity = "0";
-                }
-                bal_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>BAL: Balancing Diversity and Novelty for Active Learning</papertitle>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia
-              <br>
-              <p></p>
-              <em>TPAMI</em>, 2023
-              <br>
-              <a href="https://ieeexplore.ieee.org/abstract/document/10372131" target="blank_">Paper</a> / 
-              <a href="https://github.com/JulietLJY/BAL">Code</a> 
-              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/ShaoTengLiu/Video-P2P?style=social">  -->
-            <p></p>
-            <p style="font-size:16px;"><em>
-              In this study, we harness features acquired through self-supervised learning. We introduce a straightforward yet potent metric, Cluster Distance Difference, to identify diverse data and introduce a novel framework, Balancing Active Learning (BAL).
-              </em>
-              </p>
-            </td>
-          </tr>
-          
-          <!-- 2.4 MOODv2 -->
-          <tr class="single_element" >
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="moodv2_stop()" onmouseover="moodv2_start()">
-              <div class="one" style="display: inline;">
-                <div class="two" id='moodv2' style="display: inline;">
-                  <img src='images/MOODv2-ablation.png' width-max="480" width="100%">
-                </div>
-                <img src='images/MOODv2-framework.png' width-max="480" width="100%">
-              </div>
-              <script type="text/javascript">
-                function moodv2_start() {
-                  document.getElementById('moodv2').style.opacity = "1";
-                }
-
-                function moodv2_stop() {
-                  document.getElementById('moodv2').style.opacity = "0";
-                }
-                moodv2_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>MOODv2: Masked Image Modeling for Out-of-Distribution Detection</papertitle>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia
-              <br>
-              <p></p>
-              <em>TPAMI</em>, 2024
-              <br>
-              <a href="https://arxiv.org/abs/2401.02611" target="blank_">Paper</a> /
-              <a href="https://github.com/dvlab-research/MOOD">Code</a> 
-              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dvlab-research/MOOD?style=social"> -->
-            <p></p>
-            <p style="font-size:16px;"><em>
-              In our study, we conducted a comprehensive analysis, exploring distinct pretraining tasks and employing various OOD score functions. The results highlight that the feature representations pre-trained through reconstruction yield a notable enhancement and narrow the performance gap among various score functions. 
-              </em>
-              </p>
-            </td>
-          </tr>
-
-          <!-- 2.4-1 MoTCoder -->
-          <tr class="single_element" style="width:70%">
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="motcoder_stop()" onmouseover="motcoder_start()">
-              <div class="one" style="display: inline;vertical-align:middle;">
-                <div class="two" id='motcoder' style="display: inline;vertical-align:middle;">
-                  <img src='images/MoTCoder-impression.png' width-max="480" width="100%" vertical-align="middle">
-                </div>
-                  <img src='images/MoTCoder-framework.png' width-max="480" width="100%" vertical-align="middle">
-              </div>
-              <script type="text/javascript">
-                function motcoder_start() {
-                  document.getElementById('motcoder').style.opacity = "1";
-                }
-
-                function motcoder_stop() {
-                  document.getElementById('motcoder').style.opacity = "0";
-                }
-                motcoder_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>Elevating Large Language Models with Modular of Thought for Challenging Programming Tasks</papertitle>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Jiaya Jia
-              <br>
-              <p></p>
-              <em>Preprint</em>, 2024
-              <br>
-              <a href="https://arxiv.org/abs/2401.02611" target="blank_">Paper</a> /
-              <a href="https://huggingface.co/JingyaoLi/MoTCoder-15B-v1.0">Model </a> /
-              <a href="https://github.com/dvlab-research/MoTCoder/" target="blank_">Code</a> 
-              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dvlab-research/Prompt-Highlighter?style=social">  -->
-            <p></p>
-            <p style="font-size:16px;"><em>
-              We introduce a pioneering framework for Modular-of-Thought instruction tuning, designed to promote the decomposition of tasks into logical sub-tasks and sub-modules, significantly improving both the modularity and correctness of the generated solutions.
-              </em>
-              </p>
-            </td>
-          </tr>
-
-          <!-- 2.4-2 Robocoder -->
-          <tr class="single_element" style="width:70%">
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="robocoder_stop()" onmouseover="robocoder_start()">
-              <div class="one" style="display: inline;vertical-align:middle;">
-                <div class="two" id='robocoder' style="display: inline;vertical-align:middle;">
-                  <img src='images/robocoder_evaluation.png' width-max="480" width="100%" vertical-align="middle">
-                </div>
-                  <img src='images/robocoder_framework.png' width-max="480" width="100%" vertical-align="middle">
-              </div>
-              <script type="text/javascript">
-                function robocoder_start() {
-                  document.getElementById('robocoder').style.opacity = "1";
-                }
-
-                function robocoder_stop() {
-                  document.getElementById('robocoder').style.opacity = "0";
-                }
-                robocoder_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>RoboCoder: Robotic Learning from Basic Skills to General Tasks with Large Language Models</papertitle>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Sitong Wu, Chuanyang Zheng, Hong Xu, Jiaya Jia
-              <br>
-              <p></p>
-              <em>Preprint</em>, 2024
-              <br>
-              <a href="https://arxiv.org/abs/2406.03757" target="blank_">Paper</a>
-              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dvlab-research/Prompt-Highlighter?style=social">  -->
-            <p></p>
-            <p style="font-size:16px;"><em>
-              Our research develops a general-purpose robotic coding algorithm that enables robots to leverage basic skills to tackle increasingly complex tasks.
-              </em>
-              </p>
-            </td>
-          </tr>
-          
-          <!-- 2.5 TagCLIP-->
-          <tr class="single_element" >
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="tagclip_stop()" onmouseover="tagclip_start()">
-              <div class="one" style="display: inline;">
-                <div class="two" id='tagclip' style="display: inline;">
-                  <img src='images/tagclip-segmentation.png' width-max="480" width="100%">
-                </div>
-                  <img src='images/tagclip-framework.png' width-max="480" width="100%">
-              </div>
-              <script type="text/javascript">
-                function tagclip_start() {
-                  document.getElementById('tagclip').style.opacity = "1";
-                }
-
-                function tagclip_stop() {
-                  document.getElementById('tagclip').style.opacity = "0";
-                }
-                tagclip_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>TagCLIP: Improving Discrimination Ability of Open-Vocabulary Semantic Segmentation</papertitle>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shengju Qian, Jiaya Jia
-              <br>
-              <p></p>
-              <em>Preprint</em>, 2023
-              <br>
-              <a href="https://arxiv.org/abs/2304.07547" target="blank_">Paper</a> 
-              <!-- <a href="">Code</a>  -->
-              <!-- <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Doubiiu/tagclip?style=social">  -->
-            <p></p>
-            <p style="font-size:16px;"><em>
-              In our work, we disentangle the ill-posed optimization problem into two parallel processes: one performs semantic matching individually, and the other judges reliability for improving discrimination ability.
-              </em>
-              </p>
-            </td>
-          </tr>
-
-          <!-- 2.6 vlpose -->
-          <tr class="single_element">
-            <td style="padding:20px;width:45%;vertical-align:middle;text-align:middle" onmouseout="vlpose_stop()" onmouseover="vlpose_start()">
-              <div class="one" style="display: inline;">
-                <div class="two" id='vlpose_image' style="display: inline;">
-                  <img src='images/vlpose-impression.png' width-max="480"  width="100%">
-                </div>
-                <img src='images/vlpose-framework.png' width-max="480"  width="100%">
-              </div>
-              <script type="text/javascript">
-                function vlpose_start() {
-                  document.getElementById('vlpose_image').style.opacity = "1";
-                }
-                function vlpose_stop() {
-                  document.getElementById('vlpose_image').style.opacity = "0";
-                }
-                vlpose_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:55%;vertical-align:middle">
-                <papertitle>VLPose: Bridging the Domain Gap in Pose Estimation with Language-Vision Tuning</papertitle>
-              </a>
-              <br>
-              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Xuan Ju, Hong Xu, Jiaya Jia
-              <br>
-              <p></p>
-              <em>Preprint</em>, 2023
-              <br>
-              <a href="https://arxiv.org/abs/2402.14456" target="blank_">Paper</a>
-              <p></p>
-              <p style="font-size:16px;"><em>
-                Our research aims to bridge the domain gap between natural and artificial scenarios with efficient tuning strategies through leveraging the potential of language models. 
-              </em></p>
-            </td>
-          </tr>
-          
         </tbody></table>
 
+        <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(CVPR2023)</papertitle> Rethinking Out-of-Distribution Detection: Masked Image Modeling is All You Need
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shaozuo Yu, Zexin He, Shu Liu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2302.02615" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/MOOD">Code</a> /
+              <a href="https://cvpr2023.thecvf.com/virtual/2023/poster/23070" target="blank_">Project Page</a>
+              ]
+            </td>
+          </tr>
 
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(TPAMI2023)</papertitle> BAL: Balancing Diversity and Novelty for Active Learning
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.
+              [
+              <a href="https://ieeexplore.ieee.org/abstract/document/10372131" target="blank_">Paper</a> /
+              <a href="https://github.com/JulietLJY/BAL">Code</a>
+              ]
+            </td>
+          </tr>
 
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(TPAMI2024)</papertitle> MOODv2: Masked Image Modeling for Out-of-Distribution Detection
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2401.02611" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/MOOD">Code</a>
+              ]
+            </td>
+          </tr>
 
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(TPAMI2024)</papertitle> TagCLIP: Improving Discrimination Ability of Open-Vocabulary Semantic Segmentation
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Shengju Qian, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2304.07547" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/TagCLIP">Code</a>
+              ]
+            </td>
+          </tr>
 
-        <!-- <p></p>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-          <td style="padding:1%;width:100%;vertical-align:middle">
-            <heading>Other Projects</heading>
-          </td>
-        </tr>
-      </tbody></table>
-      <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td class="single_element" style="padding:20px;width:33%;vertical-align:top;text-align:middle">
-            <div class="one" style="display: inline;">
-                <img src='images/cvm.png' width="100%">
-            </div>
-            <br>
-            <a style="color:#ffac4d"><strong>
-              Flow-aware synthesis: A generic motion model for video frameinterpolation
-            </strong></a>
-            <a href="https://link.springer.com/content/pdf/10.1007/s41095-021-0208-x.pdf"> Paper </a>
-            <p> <em>Computational Visual Media, 2021</em>. Jinbo Xing, Wenbo Hu, <a style="color:#ffac4d">Yuechen Zhang</a>, Tien-Tsin Wong
-          </td>
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(Neurips2024)</papertitle> MR-BEN: A Comprehensive Meta-Reasoning Benchmark for Large Language Models
+              <br>
+              <p></p>
+              Zhongshen Zeng, Yinhong Liu, Yingjia Wan, <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Jianbo Dai, Yuxuan Yao, Rongwu Xu, Zehan Qi, Wanru Zhao, Linling Shen, Jianqiao Lu, Haochen Tan, Yukang Chen, Hao Zhang, Zhan Shi, Bailin Wang, Zhijiang Guo, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2406.13975" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/Mr-Ben">Code</a> /
+              <a href="https://huggingface.co/datasets/Randolphzeng/Mr-Ben">Dataset</a> /
+              <a href="https://randolph-zeng.github.io/Mr-Ben.github.io/">Project Page</a>
+              ]
+            </td>
+          </tr>
 
-          <td class="single_element" style="padding:20px;width:33%;vertical-align:top;text-align:middle">
-            <div class="one" style="display: inline;">
-                <img src='images/fsglyph.png' width="100%">
-            </div>
-            <br>
-            <a style="color:#ffac4d"><strong>ESTR4999: Few-Shot Glyph Style Transfer</strong></a>
-            <br>
-            <a href="https://github.com/JulianJuaner/FSGlyphST"> Code </a>
-            <p></p>
-            <p> <em>CUHK FYP</em>. Supervised by Tien-Tsin Wong.
-          </td>
-          <td class="single_element" style="padding:20px;width:33%;vertical-align:top;text-align:middle">
-            <div class="one" style="display: inline;">
-                <img src='images/protraitST.png' width="100%">
-            </div>
-            <br>
-            <a style="color:#ffac4d"><strong>
-            ESTR4998: Protrait Style Transfer
-            </strong></a>
-            <br>
-            <a href="https://github.com/JulianJuaner/PortraitST"> Code </a>
-            <p> <em>CUHK FYP</em>. Collaborated with Jinbo Xing, supervised by Tien-Tsin Wong.
-          </td>
-        </tr>
-      
-      </tbody></table> -->
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(Neurips2024)</papertitle> DAPE: Data-Adaptive Positional Encoding for Length Extrapolation
+              <br>
+              <p></p>
+              Chuanyang Zheng, Yihang Gao, Han Shi, Minbin Huang, <a style="color:#ffac4d">Jingyao Li</a>, Jing Xiong, Xiaozhe Ren, Michael Ng, Xin Jiang, Zhenguo Li, Yu Li.
+              [
+              <a href="https://arxiv.org/abs/2405.14722" target="blank_">Paper</a> /
+              <a href="https://github.com/chuanyang-Zheng/DAPE">Code</a> /
+              <a href="https://news.qq.com/rain/a/20241012A04J4Z00">Coverage</a>
+              ]
+            </td>
+          </tr>
 
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(COLING2025)</papertitle> QuickLLaMA: Query-aware Inference Acceleration for Large Language Models
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Han Shi, Xin Jiang, Zhenguo Li, Hong Xu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2406.07528" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/Q-LLM">Code</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(CVPR2025)</papertitle> Visionzip: Longer is better but not necessary in vision language models
+              <br>
+              <p></p>
+              Senqiao Yang, Yukang Chen, Zhuotao Tian, Chengyao Wang, <a style="color:#ffac4d">Jingyao Li</a>, Bei Yu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/pdf/2412.04467" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/VisionZip">Code</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(CVPR2025)</papertitle> DreamOmni: Unified Image Generation and Editing
+              <br>
+              <p></p>
+              Bin Xia, Yuechen Zhang, <a style="color:#ffac4d">Jingyao Li</a>, Chengyao Wang, Yitong Wang, Xinglong Wu, Bei Yu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/pdf/2412.17098" target="blank_">Paper</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(TPAMI in Revision)</papertitle> MoTCoder: Elevating Large Language Models with Modular of Thought for Challenging Programming Tasks
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2312.15960" target="blank_">Paper</a> /
+              <a href="https://huggingface.co/JingyaoLi/MoTCoder-32B-V1.5">Model</a> /
+              <a href="https://github.com/dvlab-research/MoTCoder/">Code</a> /
+              <a href="https://zhuanlan.zhihu.com/p/1891097350497338692">Coverage</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(TPAMI in Revision)</papertitle> VLPose: Bridging the Domain Gap in Pose Estimation with Language-Vision Tuning
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Xuan Ju, Hong Xu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2402.14456" target="blank_">Paper</a> /
+              <a href="https://github.com/JulietLJY/VLPose">Code</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(Under Review)</papertitle> RoboCoder: Robotic Learning from Basic Skills to General Tasks with Large Language Models
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Pengguang Chen, Sitong Wu, Chuanyang Zheng, Hong Xu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2406.03757" target="blank_">Paper</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(Under Review)</papertitle> Lyra: An Efficient and Speech-Centric Framework for Omni-Cognition
+              <br>
+              <p></p>
+              Zhisheng Zhong, Chengyao Wang, Yuqi Liu, Senqiao Yang, Longxiang Tang, Yuechen Zhang, <a style="color:#ffac4d">Jingyao Li</a>, Tianyuan Qu, Yanwei Li, Yukang Chen, Shaozuo Yu, Sitong Wu, Eric Lo, Shu Liu, Jiaya Jia.
+              [
+              <a href="https://arxiv.org/abs/2412.09501" target="blank_">Paper</a> /
+              <a href="https://github.com/dvlab-research/Lyra">Code</a> /
+              <a href="https://huggingface.co/collections/zszhong/lyra-model-674ea5bb3b39ff8f15de75fc">Models</a> /
+              <a href="https://103.170.5.190:17860/">Demo</a> /
+              <a href="https://lyra-omni.github.io/">Project Page</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(Under Review)</papertitle> DAPE V2: Process Attention Score as Feature Map for Length Extrapolation
+              <br>
+              <p></p>
+              Chuanyang Zheng, Yihang Gao, Han Shi, Jing Xiong, Jiankai Sun, <a style="color:#ffac4d">Jingyao Li</a>, Minbin Huang, Xiaozhe Ren, Michael Ng, Xin Jiang, Zhenguo Li, Yu Li.
+              [
+              <a href="https://arxiv.org/abs/2410.04798" target="blank_">Paper</a> /
+              <a href="https://github.com/chuanyang-Zheng/DAPE">Code</a>
+              ]
+            </td>
+          </tr>
+
+          <tr class="single_element" style="width:100%">
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <papertitle>(Under Review)</papertitle> Logits-Based Finetuning
+              <br>
+              <p></p>
+              <a style="color:#ffac4d">Jingyao Li</a>, Senqiao Yang, Sitong Wu, Han Shi, Chuanyang Zheng, Hong Xu, Jiaya Jia.
+            </td>
+          </tr>
+        </table>
 
         <!-- 3 Experiences -->
         <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -443,19 +275,28 @@
             </td>
           </tr>
         </tbody></table>
-        <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <table style="width:90%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tbody>
             <tr >
               <td style="padding:10px;width:40%;text-align:left">
-                <b>SmartMore Corporation Limited</b>
+                <b>Alibaba Group</b>
               </td>
               <td style="padding:0px;width:40%;text-align:left">
-                <em>Computer Vision Developer</em>
-                <br>
-                Mentor: <a href="http://shuliu.me/">Shu Liu</a>
+                <em>Research Intern </em>
               </td>
               <td style="padding:0px;width:20%;text-align:right">
-                <strong>Aug. 2021 - Present</strong>
+                <strong>Aug.2024-present</strong>
+              </td>
+            </tr>
+            <tr >
+              <td style="padding:10px;width:40%;text-align:left">
+                <b>Huawei Noah's Ark Lab</b>
+              </td>
+              <td style="padding:0px;width:40%;text-align:left">
+                <em>Research Intern </em>
+              </td>
+              <td style="padding:0px;width:20%;text-align:right">
+                <strong>Apr.2024 - Aug.2024</strong>
               </td>
             </tr>
             <tr >
@@ -463,12 +304,10 @@
                 <b>The Chinese University of Hong Kong</b>
               </td>
               <td style="padding:0px;width:40%;text-align:left">
-                <em>Ph.D of the Department of Computer Science and Engineering</em>
-                <br>
-                Supervisor: <a href="https://jiaya.me">Jiaya Jia</a>
+                <em>Ph.D of the Department of Computer Science and Engineering</em> Supervisor: <a href="https://jiaya.me">Jiaya Jia</a>
               </td>
               <td style="padding:0px;width:20%;text-align:right">
-                <strong>Aug. 2022 - Present</strong>
+                <strong>Aug. 2022 - Jul. 2026</strong>
               </td>
             </tr>
             <tr>
@@ -477,8 +316,6 @@
               </td>
               <td style="padding:0px;width:40%;text-align:left">
                 <em>Bachelor of the Department of Automation</em>
-                <br>
-                Supervisor: <a href="https://gr.xjtu.edu.cn/web/zsduan/journal-papers">Zhansheng Duan</a>
               </td>
               <td style="padding:0px;width:20%;text-align:right">
                 <strong>Sep. 2018 - Jul. 2022</strong>
@@ -501,7 +338,7 @@
 				<p></p>
         
         <!-- 4 HonorsAndAwards -->
-        <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <!-- <table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
             <td style="padding:1%;width:100%;vertical-align:middle">
               <heading>Selected Awards</heading>
@@ -523,61 +360,42 @@
             </p></li>
           </ul>
         
-        <p></p>
+        <p></p> -->
 
         <!-- 5 Teaching -->
-        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0"><tbody>
+<table style="width:100%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
             <td style="padding:1%;width:100%;vertical-align:middle">
               <heading>Teaching</heading>
             </td>
           </tr>
         </tbody></table>
-        <table style="border-spacing:10px 0px;">
+        <table style="width:90%;padding:3px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tbody>
-            <tr>
+            <tr >
               <td style="padding:10px;width:40%;text-align:left">
-                CENG2010 <b>|</b> Digital Logic Design Laboratory <b>|</b> 2023 Spring
+                <b>CENG2010</b>
+              </td>
+              <td style="padding:0px;width:40%;text-align:left">
+                <em>Digital Logic Design Laboratory </em>
+              </td>
+              <td style="padding:0px;width:20%;text-align:right">
+                <strong>2023 Spring</strong>
+              </td>
+            </tr>
+            <tr >
+              <td style="padding:10px;width:40%;text-align:left">
+                <b>CSCI3250</b>
+              </td>
+              <td style="padding:0px;width:40%;text-align:left">
+                <em>Computers and Society </em>
+              </td>
+              <td style="padding:0px;width:20%;text-align:right">
+                <strong>2022 Fall</strong>
               </td>
             </tr>
           </tbody>
         </table>
-        <table style="border-spacing:10px 0px;">
-          <tbody>
-            <tr>
-              <td style="padding:10px;width:40%;text-align:left">
-                CSCI3250 <b>|</b> Computers and Society <b>|</b> 2022 Fall
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:1%;width:100%;vertical-align:middle">
-              <heading>Page Views</heading>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:10%;width:50%;vertical-align:middle">
-              <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=pUXiGSWRZAOMyV4HZ4k_qeaaEmRtei5Nbmuno6ABr_o&cl=ffffff&w=a"></script> 
-            </td>
-        </tr>
-      </tbody></table> -->
-        <!-- 6 Ending -->
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:0px">
-              <br>
-              <p style="text-align:right;font-size:small;">
-                Last updated: June 2024
-                <br>
-                Web page design credit to <a href="https://jonbarron.info" style="font-size: 14px">Jon Barron</a> and <a href="https://zxhezexin.com/" style="font-size: 14px">Zexin He</a>
-                <br>
-                Avatar style credit to <a href="https://www.shaotengliu.com/" style="font-size: 14px">Shaoteng Liu</a>
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
       
       </td>
     </tr>

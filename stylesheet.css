@@ -97,7 +97,7 @@ heading {
 papertitle {
   font-family: 'Noto Serif', 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 17px;
-  font-weight: 700
+  font-weight: 700;
 }
 
 name {
@@ -141,6 +141,7 @@ p,em,tr{
 
 papertitle{
   color: rgb(144, 245, 190);
+  
 }
 
 heading{
