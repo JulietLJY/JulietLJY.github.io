@@ -40,6 +40,13 @@
         radial-gradient(circle at 88% 15%, rgba(138, 63, 45, 0.18), transparent 24%),
         linear-gradient(180deg, #f8f2ea 0%, #efe2d4 42%, #ead9c7 100%);
       line-height: 1.65;
+      cursor: none;
+    }
+
+    @media (pointer: coarse) {
+      body {
+        cursor: auto;
+      }
     }
 
     a {
@@ -96,6 +103,36 @@
       margin: 0 auto;
     }
 
+    .cursor-glow,
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.18s ease;
+    }
+
+    .cursor-glow {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 248, 241, 0.95) 0%, rgba(232, 200, 185, 0.45) 34%, rgba(138, 63, 45, 0.06) 68%, transparent 100%);
+      mix-blend-mode: screen;
+      filter: blur(12px);
+    }
+
+    .cursor-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(138, 63, 45, 0.35);
+      background: rgba(255, 250, 246, 0.9);
+      box-shadow: 0 0 0 6px rgba(138, 63, 45, 0.06);
+    }
+
     .topbar {
       position: sticky;
       top: 0;
@@ -147,6 +184,47 @@
       border: 1px solid rgba(255, 255, 255, 0.42);
       box-shadow: var(--shadow);
       overflow: hidden;
+    }
+
+    .interactive-card {
+      position: relative;
+      isolation: isolate;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      --mx: 50%;
+      --my: 50%;
+      --tilt-x: 0deg;
+      --tilt-y: 0deg;
+      --lift: 0px;
+    }
+
+    .interactive-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.9), rgba(255, 243, 235, 0.48) 18%, rgba(232, 200, 185, 0.14) 36%, transparent 62%);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+      z-index: 0;
+    }
+
+    .interactive-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .interactive-card.is-active,
+    .interactive-card:hover {
+      transform: perspective(1200px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(calc(-4px + var(--lift)));
+      border-color: rgba(138, 63, 45, 0.22);
+      box-shadow: 0 24px 48px rgba(52, 27, 16, 0.12);
+    }
+
+    .interactive-card.is-active::before,
+    .interactive-card:hover::before {
+      opacity: 1;
     }
 
     .hero-copy {
@@ -363,7 +441,7 @@
     .papers,
     .papers-secondary {
       display: grid;
-      gap: 10px;
+      gap: 14px;
     }
 
     .papers {
@@ -372,66 +450,145 @@
 
     .papers-secondary {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-top: 10px;
+      margin-top: 14px;
+    }
+
+    .papers-secondary.card-rail {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 36vw);
+      align-items: stretch;
+    }
+
+    .other-pubs-carousel {
+      position: relative;
+    }
+
+    .card-rail {
+      position: relative;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 36vw);
+      gap: 18px;
+      overflow-x: auto;
+      padding: 6px 8px 18px;
+      margin: 0;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      cursor: grab;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 250, 246, 0.92);
+      color: var(--accent);
+      box-shadow: 0 16px 32px rgba(52, 27, 16, 0.12);
+      cursor: pointer;
+      z-index: 2;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .carousel-arrow:hover {
+      transform: translateY(-50%) scale(1.04);
+      background: rgba(255, 252, 249, 1);
+    }
+
+    .carousel-arrow.is-disabled {
+      opacity: 0.35;
+    }
+
+    .carousel-arrow-prev {
+      left: -18px;
+    }
+
+    .carousel-arrow-next {
+      right: -18px;
+    }
+
+    .card-rail::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card-rail.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+    }
+
+    .card-rail > * {
+      scroll-snap-align: start;
+      min-width: 0;
+    }
+
+    .card-rail.timeline {
+      grid-auto-columns: minmax(320px, 43vw);
+    }
+
+    .card-rail.list-grid {
+      grid-auto-columns: minmax(280px, 30vw);
     }
 
     .paper {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,248,243,0.88));
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255, 251, 247, 0.96), rgba(255, 245, 237, 0.9));
       border: 1px solid rgba(53, 31, 18, 0.08);
-      box-shadow: 0 14px 30px rgba(52, 27, 16, 0.06);
+      box-shadow: 0 16px 34px rgba(52, 27, 16, 0.06);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .paper:hover,
+    .timeline-item:hover,
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(138, 63, 45, 0.18);
+      box-shadow: 0 20px 40px rgba(52, 27, 16, 0.09);
+    }
+
+    .paper-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 8px;
     }
 
     .paper-venue {
+      flex: 0 0 auto;
       display: inline-flex;
       padding: 6px 10px;
       border-radius: 999px;
       background: var(--accent-soft);
       color: #6c2f21;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    .papers-secondary .paper-venue {
-      background: var(--accent-soft);
-      color: #6c2f21;
-    }
-
-    .papers-secondary .paper-venue.arxiv {
+    .paper-venue.arxiv {
       background: rgba(101, 86, 77, 0.14);
       color: var(--muted);
     }
 
-    .paper-line {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      flex-wrap: nowrap;
-    }
-
-    .paper-line .paper-venue {
-      flex: 0 0 auto;
-    }
-
-    .paper-line-text {
-      flex: 1 1 720px;
-      min-width: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
     .paper-title-line {
-      color: var(--accent);
-      margin-bottom: 2px;
-      font-size: 0.96rem;
-      font-weight: 400;
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.5;
     }
 
     .paper-author-line {
+      margin: 0;
       color: var(--muted);
+      font-size: 0.95rem;
     }
 
     .paper-title-line em {
@@ -439,22 +596,18 @@
     }
 
     .paper-inline-links {
-      display: inline;
-      font-size: 0.96rem;
-      font-weight: 400;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
     }
 
     .paper-inline-links a {
       color: var(--accent);
+      font-size: 0.92rem;
       text-decoration: underline;
       text-decoration-thickness: 1.2px;
       text-underline-offset: 2px;
-      margin-left: 8px;
-    }
-
-    .papers-secondary .paper-title-line,
-    .papers-secondary .paper-inline-links a {
-      color: var(--muted);
     }
 
     .author-me {
@@ -492,6 +645,17 @@
     .subpaper-item {
       font-size: 0.88rem;
       color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .list-grid {
@@ -534,11 +698,27 @@
       .timeline-item {
         grid-template-columns: 1fr;
       }
+
+      .card-rail,
+      .card-rail.timeline,
+      .card-rail.list-grid {
+        grid-auto-flow: row;
+        grid-auto-columns: unset;
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+        cursor: default;
+      }
+
+      .carousel-arrow {
+        display: none;
+      }
     }
 
     @media (max-width: 640px) {
       .topbar-inner,
-      .section-title {
+      .section-title,
+      .paper-top {
         align-items: flex-start;
         flex-direction: column;
       }
@@ -559,9 +739,27 @@
         width: min(calc(100% - 24px), var(--max-width));
       }
     }
+
+    @media (pointer: coarse) {
+      .cursor-glow,
+      .cursor-dot {
+        display: none;
+      }
+
+      .interactive-card::before {
+        display: none;
+      }
+
+      .interactive-card.is-active,
+      .interactive-card:hover {
+        transform: translateY(-3px);
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
   <div class="page">
     <header class="topbar">
       <div class="container topbar-inner">
@@ -577,8 +775,8 @@
 
     <main id="top">
       <section class="hero">
-        <div class="container hero-panel">
-          <div class="hero-copy">
+          <div class="container hero-panel">
+          <div class="hero-copy reveal">
             <h1>Jingyao Li<span class="name-zh">（李靖瑶）</span></h1>
             <p class="lead">
               I am a Ph.D. candidate at The Chinese University of Hong Kong, advised by
@@ -600,7 +798,7 @@
             </div>
           </div>
 
-          <div class="hero-photo">
+          <div class="hero-photo reveal">
             <img src="jingyaoli.jpg" alt="Portrait of Jingyao Li">
           </div>
         </div>
@@ -608,12 +806,12 @@
 
       <section class="section" id="about">
         <div class="container">
-          <div class="section-title">
+          <div class="section-title reveal">
             <h2>Education</h2>
           </div>
 
           <div class="timeline">
-            <article class="timeline-item">
+            <article class="timeline-item reveal">
               <div class="timeline-date">Aug. 2022 - Jul. 2026</div>
               <div>
                 <h3>The Chinese University of Hong Kong</h3>
@@ -624,12 +822,14 @@
               </div>
             </article>
 
-            <article class="timeline-item">
+            <article class="timeline-item reveal">
               <div class="timeline-date">Sept. 2018 - Jul. 2022</div>
               <div>
                 <h3>Xi'an Jiaotong University</h3>
                 <p>
-                  B.Eng. in Automation. Special Class for the Gifted Young and Qian Xuesen Honor Class.
+                  B.Eng. in Automation. Special Class for the Gifted Young
+                  (<span class="cn-fangsong">少年班</span>) and Qian Xuesen Honor Class
+                  (<span class="cn-fangsong">钱学森班</span>).
                 </p>
               </div>
             </article>
@@ -639,12 +839,12 @@
 
       <section class="section" id="experience">
         <div class="container">
-          <div class="section-title">
+          <div class="section-title reveal">
             <h2>Experience</h2>
           </div>
 
           <div class="timeline">
-            <article class="timeline-item">
+            <article class="timeline-item reveal">
               <div class="timeline-date">Apr. 2024 - Nov. 2024</div>
               <div>
                 <h3>Huawei Noah's Ark Lab · Research Intern</h3>
@@ -655,7 +855,7 @@
               </div>
             </article>
 
-            <article class="timeline-item">
+            <article class="timeline-item reveal">
               <div class="timeline-date">Dec. 2024 - Jul. 2025</div>
               <div>
                 <h3>Alibaba Group's Tongyi Lab · Research Intern</h3>
@@ -671,257 +871,234 @@
 
       <section class="section" id="publications">
         <div class="container">
-          <div class="section-title">
+          <div class="section-title reveal">
             <h2>Publications</h2>
           </div>
 
           <div class="papers">
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Rethinking Out-of-Distribution Detection: Masked Image Modeling is All You Need.</h3>
                 <span class="paper-venue">CVPR 2023</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Rethinking Out-of-Distribution Detection: Masked Image Modeling is All You Need. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2302.02615" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/MOOD" target="_blank" rel="noreferrer">Code</a><a href="https://cvpr2023.thecvf.com/virtual/2023/poster/23070" target="_blank" rel="noreferrer">Project</a></span></div>
-                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Zexin He, Shu Liu, Jiaya Jia.</div>
-                </div>
               </div>
+              <p class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Zexin He, Shu Liu, Jiaya Jia.</p>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2302.02615" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/MOOD" target="_blank" rel="noreferrer">Code</a><a href="https://cvpr2023.thecvf.com/virtual/2023/poster/23070" target="_blank" rel="noreferrer">Project</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">BAL: Balancing Diversity and Novelty for Active Learning.</h3>
                 <span class="paper-venue">TPAMI 2023</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">BAL: Balancing Diversity and Novelty for Active Learning. <span class="paper-inline-links"><a href="https://ieeexplore.ieee.org/abstract/document/10372131" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/JulietLJY/BAL" target="_blank" rel="noreferrer">Code</a></span></div>
-                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.</div>
-                </div>
               </div>
+              <p class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.</p>
+              <div class="paper-inline-links"><a href="https://ieeexplore.ieee.org/abstract/document/10372131" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/JulietLJY/BAL" target="_blank" rel="noreferrer">Code</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">MOODv2: Masked Image Modeling for Out-of-Distribution Detection.</h3>
                 <span class="paper-venue">TPAMI 2024</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">MOODv2: Masked Image Modeling for Out-of-Distribution Detection. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2401.02611" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/MOOD" target="_blank" rel="noreferrer">Code</a></span></div>
-                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.</div>
-                </div>
               </div>
+              <p class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.</p>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2401.02611" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/MOOD" target="_blank" rel="noreferrer">Code</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">TagCLIP: Improving Discrimination Ability of Open-Vocabulary Semantic Segmentation.</h3>
                 <span class="paper-venue">TPAMI 2024</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">TagCLIP: Improving Discrimination Ability of Open-Vocabulary Semantic Segmentation. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2304.07547" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/TagCLIP" target="_blank" rel="noreferrer">Code</a></span></div>
-                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shengju Qian, Jiaya Jia.</div>
-                </div>
               </div>
+              <p class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shengju Qian, Jiaya Jia.</p>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2304.07547" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/TagCLIP" target="_blank" rel="noreferrer">Code</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">QuickLLaMA: Query-aware Inference Acceleration for Large Language Models.</h3>
                 <span class="paper-venue">COLING 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">QuickLLaMA: Query-aware Inference Acceleration for Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2406.07528" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Q-LLM" target="_blank" rel="noreferrer">Code</a></span></div>
-                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Han Shi, Xin Jiang, Zhenguo Li, Hong Xu, Jiaya Jia.</div>
-                </div>
               </div>
+              <p class="paper-author-line"><span class="author-me">Jingyao Li</span>, Han Shi, Xin Jiang, Zhenguo Li, Hong Xu, Jiaya Jia.</p>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2406.07528" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Q-LLM" target="_blank" rel="noreferrer">Code</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">VLPose: Bridging the Domain Gap in Pose Estimation with Language-Vision Tuning.</h3>
                 <span class="paper-venue">TPAMI 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">VLPose: Bridging the Domain Gap in Pose Estimation with Language-Vision Tuning. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2402.14456" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/JulietLJY/VLPose" target="_blank" rel="noreferrer">Code</a></span></div>
-                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Xuan Ju, Hong Xu, Jiaya Jia.</div>
-                </div>
               </div>
+              <p class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Xuan Ju, Hong Xu, Jiaya Jia.</p>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2402.14456" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/JulietLJY/VLPose" target="_blank" rel="noreferrer">Code</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Logits-Based Finetuning.</h3>
                 <span class="paper-venue">EMNLP 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Logits-Based Finetuning. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2505.24461" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Logits-Based-Finetuning" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/datasets/JingyaoLi/Science-Logits-1.2M" target="_blank" rel="noreferrer">Data</a></span></div>
-                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Senqiao Yang, Sitong Wu, Han Shi, Chuanyang Zheng, Hong Xu, Jiaya Jia.</div>
-                </div>
               </div>
+              <p class="paper-author-line"><span class="author-me">Jingyao Li</span>, Senqiao Yang, Sitong Wu, Han Shi, Chuanyang Zheng, Hong Xu, Jiaya Jia.</p>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2505.24461" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Logits-Based-Finetuning" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/datasets/JingyaoLi/Science-Logits-1.2M" target="_blank" rel="noreferrer">Data</a></div>
             </article>
           </div>
 
-          <h3 class="subsection-label">Other Publications</h3>
-          <div class="papers-secondary">
-            <article class="paper">
-              <div class="paper-line">
+          <h3 class="subsection-label reveal">Other Publications</h3>
+          <div class="other-pubs-carousel reveal">
+            <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Scroll other publications left">‹</button>
+            <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Scroll other publications right">›</button>
+            <div class="papers-secondary card-rail">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">MR-BEN: A Comprehensive Meta-Reasoning Benchmark for Large Language Models.</h3>
                 <span class="paper-venue">NeurIPS 2024</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">MR-BEN: A Comprehensive Meta-Reasoning Benchmark for Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2406.13975" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Mr-Ben" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/datasets/Randolphzeng/Mr-Ben" target="_blank" rel="noreferrer">Dataset</a><a href="https://randolph-zeng.github.io/Mr-Ben.github.io/" target="_blank" rel="noreferrer">Project</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2406.13975" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Mr-Ben" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/datasets/Randolphzeng/Mr-Ben" target="_blank" rel="noreferrer">Dataset</a><a href="https://randolph-zeng.github.io/Mr-Ben.github.io/" target="_blank" rel="noreferrer">Project</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">DAPE: Data-Adaptive Positional Encoding for Length Extrapolation.</h3>
                 <span class="paper-venue">NeurIPS 2024</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">DAPE: Data-Adaptive Positional Encoding for Length Extrapolation. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2405.14722" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/chuanyang-Zheng/DAPE" target="_blank" rel="noreferrer">Code</a><a href="https://news.qq.com/rain/a/20241012A04J4Z00" target="_blank" rel="noreferrer">Coverage</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2405.14722" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/chuanyang-Zheng/DAPE" target="_blank" rel="noreferrer">Code</a><a href="https://news.qq.com/rain/a/20241012A04J4Z00" target="_blank" rel="noreferrer">Coverage</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Visionzip: Longer is Better but Not Necessary in Vision Language Models.</h3>
                 <span class="paper-venue">CVPR 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Visionzip: Longer is Better but Not Necessary in Vision Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/pdf/2412.04467" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/VisionZip" target="_blank" rel="noreferrer">Code</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/pdf/2412.04467" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/VisionZip" target="_blank" rel="noreferrer">Code</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">DreamOmni: Unified Image Generation and Editing.</h3>
                 <span class="paper-venue">CVPR 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">DreamOmni: Unified Image Generation and Editing. <span class="paper-inline-links"><a href="https://arxiv.org/pdf/2412.17098" target="_blank" rel="noreferrer">Paper</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/pdf/2412.17098" target="_blank" rel="noreferrer">Paper</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">DAPE V2: Process Attention Score as Feature Map for Length Extrapolation.</h3>
                 <span class="paper-venue">ACL 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">DAPE V2: Process Attention Score as Feature Map for Length Extrapolation. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2410.04798" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/chuanyang-Zheng/DAPE" target="_blank" rel="noreferrer">Code</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2410.04798" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/chuanyang-Zheng/DAPE" target="_blank" rel="noreferrer">Code</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Lyra: An Efficient and Speech-Centric Framework for Omni-Cognition.</h3>
                 <span class="paper-venue">ICCV 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Lyra: An Efficient and Speech-Centric Framework for Omni-Cognition. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2412.09501" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Lyra" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/collections/zszhong/lyra-model-674ea5bb3b39ff8f15de75fc" target="_blank" rel="noreferrer">Models</a><a href="https://103.170.5.190:17860/" target="_blank" rel="noreferrer">Demo</a><a href="https://lyra-omni.github.io/" target="_blank" rel="noreferrer">Project</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2412.09501" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Lyra" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/collections/zszhong/lyra-model-674ea5bb3b39ff8f15de75fc" target="_blank" rel="noreferrer">Models</a><a href="https://103.170.5.190:17860/" target="_blank" rel="noreferrer">Demo</a><a href="https://lyra-omni.github.io/" target="_blank" rel="noreferrer">Project</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">DLoFT: Gradient-Decoupled Fine-Tuning for Generalizable Long Chain-of-Thought Reasoning.</h3>
                 <span class="paper-venue">NeurIPS 2025</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">DLoFT: Gradient-Decoupled Fine-Tuning for Generalizable Long Chain-of-Thought Reasoning. <span class="paper-inline-links"><a href="https://neurips.cc/virtual/2025/poster/119852" target="_blank" rel="noreferrer">Webpage</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://neurips.cc/virtual/2025/poster/119852" target="_blank" rel="noreferrer">Webpage</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Unlocking Token Rewards via Training-Free Reward Attribution.</h3>
                 <span class="paper-venue">CVPR 2026</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Unlocking Token Rewards via Training-Free Reward Attribution. <span class="paper-inline-links"><a href="https://openreview.net/forum?id=A6cIIUOzVT&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3Dthecvf.com%2FCVPR%2F2026%2FConference%2FAuthors%23your-submissions)" target="_blank" rel="noreferrer">Paper</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://openreview.net/forum?id=A6cIIUOzVT&amp;referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3Dthecvf.com%2FCVPR%2F2026%2FConference%2FAuthors%23your-submissions)" target="_blank" rel="noreferrer">Paper</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">DreamOmni2: Multimodal Instruction-based Editing and Generation.</h3>
                 <span class="paper-venue">CVPR 2026</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">DreamOmni2: Multimodal Instruction-based Editing and Generation. <span class="paper-inline-links"><a href="https://github.com/dvlab-research/DreamOmni2" target="_blank" rel="noreferrer">GitHub</a><a href="https://pbihao.github.io/projects/DreamOmni2/index.html" target="_blank" rel="noreferrer">Webpage</a><a href="https://huggingface.co/spaces/wcy1122/DreamOmni2-Edit" target="_blank" rel="noreferrer">Demo-edit</a><a href="https://huggingface.co/spaces/wcy1122/DreamOmni2-Gen" target="_blank" rel="noreferrer">Demo-gen</a><a href="https://www.youtube.com/watch?v=8xpoiRK57uU" target="_blank" rel="noreferrer">Video</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://github.com/dvlab-research/DreamOmni2" target="_blank" rel="noreferrer">GitHub</a><a href="https://pbihao.github.io/projects/DreamOmni2/index.html" target="_blank" rel="noreferrer">Webpage</a><a href="https://huggingface.co/spaces/wcy1122/DreamOmni2-Edit" target="_blank" rel="noreferrer">Demo-edit</a><a href="https://huggingface.co/spaces/wcy1122/DreamOmni2-Gen" target="_blank" rel="noreferrer">Demo-gen</a><a href="https://www.youtube.com/watch?v=8xpoiRK57uU" target="_blank" rel="noreferrer">Video</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Understanding the Mixture-of-Expert with Nadaraya-Watson Kernel.</h3>
                 <span class="paper-venue">ICLR 2026</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Understanding the Mixture-of-Expert with Nadaraya-Watson Kernel. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2509.25913" target="_blank" rel="noreferrer">Paper</a></span></div>
-                </div>
+              </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2509.25913" target="_blank" rel="noreferrer">Paper</a></div>
+            </article>
+
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">MoTCoder: Elevating Large Language Models with Modular of Thought for Challenging Programming Tasks.</h3>
+                <span class="paper-venue arxiv">Arxiv</span>
+              </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2312.15960" target="_blank" rel="noreferrer">Paper</a><a href="https://huggingface.co/JingyaoLi/MoTCoder-32B-V1.5" target="_blank" rel="noreferrer">Model</a><a href="https://github.com/dvlab-research/MoTCoder/" target="_blank" rel="noreferrer">Code</a><a href="https://zhuanlan.zhihu.com/p/1891097350497338692" target="_blank" rel="noreferrer">Coverage</a></div>
+            </article>
+
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">RoboCoder: Robotic Learning from Basic Skills to General Tasks with Large Language Models.</h3>
+                <span class="paper-venue arxiv">Arxiv</span>
+              </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2406.03757" target="_blank" rel="noreferrer">Paper</a></div>
+            </article>
+
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">End-to-End QA Construction Pipeline for Continual Pre-training of Large Language Models.</h3>
+                <span class="paper-venue arxiv">Arxiv</span>
               </div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">DynamicBench: Evaluating Real-Time Report Generation in Large Language Models.</h3>
                 <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">MoTCoder: Elevating Large Language Models with Modular of Thought for Challenging Programming Tasks. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2312.15960" target="_blank" rel="noreferrer">Paper</a><a href="https://huggingface.co/JingyaoLi/MoTCoder-32B-V1.5" target="_blank" rel="noreferrer">Model</a><a href="https://github.com/dvlab-research/MoTCoder/" target="_blank" rel="noreferrer">Code</a><a href="https://zhuanlan.zhihu.com/p/1891097350497338692" target="_blank" rel="noreferrer">Coverage</a></span></div>
-                </div>
+              </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2506.21343" target="_blank" rel="noreferrer">Paper</a></div>
+            </article>
+
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Mixture-of-Scores: Robust Image-Text Data Quality Score via Three Lines of Code.</h3>
+                <span class="paper-venue arxiv">Arxiv</span>
               </div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal interactive-card">
+              <div class="paper-top">
+                <h3 class="paper-title-line">MGM-Omni: Scaling Omni LLMs to Personalized Long-Horizon Speech.</h3>
                 <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">RoboCoder: Robotic Learning from Basic Skills to General Tasks with Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2406.03757" target="_blank" rel="noreferrer">Paper</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://mgm-omni.notion.site/MGM-Omni-An-Open-source-Omni-Chatbot-2395728e0b0180149ac9f24683fc9907" target="_blank" rel="noreferrer">Blog</a><a href="https://huggingface.co/papers/2509.25131" target="_blank" rel="noreferrer">Paper</a><a href="https://huggingface.co/collections/wcy1122/mgm-omni-6896075e97317a88825032e1" target="_blank" rel="noreferrer">Models</a><a href="https://huggingface.co/datasets/wcy1122/Long-TTS-Eval" target="_blank" rel="noreferrer">Benchmark</a><a href="https://huggingface.co/spaces/wcy1122/MGM-Omni" target="_blank" rel="noreferrer">Demo</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Answer-Consistent Chain-of-thought Reinforcement Learning For Multi-modal Large Langauge Models.</h3>
                 <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">End-to-End QA Construction Pipeline for Continual Pre-training of Large Language Models.</div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://arxiv.org/abs/2510.10104" target="_blank" rel="noreferrer">Paper</a></div>
             </article>
 
-            <article class="paper">
-              <div class="paper-line">
+            <article class="paper reveal">
+              <div class="paper-top">
+                <h3 class="paper-title-line">Multi-Scale Group Relative Policy Optimization for Large Language Models.</h3>
                 <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">DynamicBench: Evaluating Real-Time Report Generation in Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2506.21343" target="_blank" rel="noreferrer">Paper</a></span></div>
-                </div>
               </div>
+              <div class="paper-inline-links"><a href="https://openreview.net/forum?id=ktHj6YazEE" target="_blank" rel="noreferrer">Paper</a></div>
             </article>
-
-            <article class="paper">
-              <div class="paper-line">
-                <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Mixture-of-Scores: Robust Image-Text Data Quality Score via Three Lines of Code.</div>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper">
-              <div class="paper-line">
-                <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">MGM-Omni: Scaling Omni LLMs to Personalized Long-Horizon Speech. <span class="paper-inline-links"><a href="https://mgm-omni.notion.site/MGM-Omni-An-Open-source-Omni-Chatbot-2395728e0b0180149ac9f24683fc9907" target="_blank" rel="noreferrer">Blog</a><a href="https://huggingface.co/papers/2509.25131" target="_blank" rel="noreferrer">Paper</a><a href="https://huggingface.co/collections/wcy1122/mgm-omni-6896075e97317a88825032e1" target="_blank" rel="noreferrer">Models</a><a href="https://huggingface.co/datasets/wcy1122/Long-TTS-Eval" target="_blank" rel="noreferrer">Benchmark</a><a href="https://huggingface.co/spaces/wcy1122/MGM-Omni" target="_blank" rel="noreferrer">Demo</a></span></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper">
-              <div class="paper-line">
-                <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Answer-Consistent Chain-of-thought Reinforcement Learning For Multi-modal Large Langauge Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2510.10104" target="_blank" rel="noreferrer">Paper</a></span></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper">
-              <div class="paper-line">
-                <span class="paper-venue arxiv">Arxiv</span>
-                <div class="paper-line-text">
-                  <div class="paper-title-line">Multi-Scale Group Relative Policy Optimization for Large Language Models. <span class="paper-inline-links"><a href="https://openreview.net/forum?id=ktHj6YazEE" target="_blank" rel="noreferrer">Paper</a></span></div>
-                </div>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section" id="service">
         <div class="container">
-          <div class="section-title">
-            <h2>Teaching & Honors</h2>
+          <div class="section-title reveal">
+            <h2>Teaching &amp; Honors</h2>
           </div>
 
           <div class="list-grid">
-            <div class="card list-card">
+            <div class="card list-card reveal">
               <h3>Teaching</h3>
               <ul>
                 <li>(CENG2010) Digital Logic Design Laboratory, 2023 Spring</li>
@@ -929,7 +1106,7 @@
               </ul>
             </div>
 
-            <div class="card list-card">
+            <div class="card list-card reveal">
               <h3>Awards</h3>
               <ul>
                 <li>National Scholarship, 2020</li>
@@ -939,7 +1116,7 @@
               </ul>
             </div>
 
-            <div class="card list-card">
+            <div class="card list-card reveal">
               <h3>Leadership</h3>
               <ul>
                 <li>Vice President, Youth Volunteers Association, 2019-2020</li>
@@ -953,12 +1130,163 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="reveal">
       <div class="container">
         <p>Jingyao Li · <a href="mailto:jingyao.li@link.cuhk.edu.hk">jingyao.li@link.cuhk.edu.hk</a> · <a href="jingyaoli.pdf" target="_blank" rel="noreferrer">CV</a></p>
         <p>Last updated: March 2026</p>
       </div>
     </footer>
   </div>
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 50, 300)}ms`;
+      observer.observe(item);
+    });
+
+    const prefersFinePointer = window.matchMedia('(pointer: fine)').matches;
+    const cursorGlow = document.querySelector('.cursor-glow');
+    const cursorDot = document.querySelector('.cursor-dot');
+    const interactiveCards = document.querySelectorAll('#publications .papers-secondary .interactive-card');
+    const rails = document.querySelectorAll('#publications .papers-secondary.card-rail');
+
+    if (prefersFinePointer && cursorGlow && cursorDot) {
+      const showCursor = () => {
+        cursorGlow.style.opacity = '1';
+        cursorDot.style.opacity = '1';
+      };
+
+      const hideCursor = () => {
+        cursorGlow.style.opacity = '0';
+        cursorDot.style.opacity = '0';
+      };
+
+      window.addEventListener('mousemove', (event) => {
+        const { clientX, clientY } = event;
+        cursorGlow.style.left = `${clientX}px`;
+        cursorGlow.style.top = `${clientY}px`;
+        cursorDot.style.left = `${clientX}px`;
+        cursorDot.style.top = `${clientY}px`;
+        showCursor();
+      });
+
+      window.addEventListener('mousedown', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(0.88)';
+      });
+
+      window.addEventListener('mouseup', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+
+      document.addEventListener('mouseleave', hideCursor);
+      document.addEventListener('mouseenter', showCursor);
+
+      interactiveCards.forEach((card) => {
+        card.addEventListener('mousemove', (event) => {
+          const bounds = card.getBoundingClientRect();
+          const x = event.clientX - bounds.left;
+          const y = event.clientY - bounds.top;
+          const px = (x / bounds.width) * 100;
+          const py = (y / bounds.height) * 100;
+          const tiltY = ((px - 50) / 50) * 4.5;
+          const tiltX = ((50 - py) / 50) * 4.5;
+          card.style.setProperty('--mx', `${px}%`);
+          card.style.setProperty('--my', `${py}%`);
+          card.style.setProperty('--tilt-x', `${tiltX}deg`);
+          card.style.setProperty('--tilt-y', `${tiltY}deg`);
+          card.style.setProperty('--lift', '-2px');
+          card.classList.add('is-active');
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.classList.remove('is-active');
+          card.style.setProperty('--tilt-x', '0deg');
+          card.style.setProperty('--tilt-y', '0deg');
+          card.style.setProperty('--lift', '0px');
+        });
+      });
+    }
+
+    rails.forEach((rail) => {
+      const carousel = rail.closest('.other-pubs-carousel');
+      const prevButton = carousel ? carousel.querySelector('.carousel-arrow-prev') : null;
+      const nextButton = carousel ? carousel.querySelector('.carousel-arrow-next') : null;
+      let isPointerDown = false;
+      let startX = 0;
+      let startScrollLeft = 0;
+
+      const updateArrows = () => {
+        if (!prevButton || !nextButton || window.innerWidth <= 980) return;
+        const maxScrollLeft = Math.max(rail.scrollWidth - rail.clientWidth, 0);
+        prevButton.classList.toggle('is-disabled', rail.scrollLeft <= 4);
+        nextButton.classList.toggle('is-disabled', rail.scrollLeft >= maxScrollLeft - 4);
+      };
+
+      rail.addEventListener('pointerdown', (event) => {
+        if (window.innerWidth <= 980) return;
+        if (event.target.closest('a')) return;
+        isPointerDown = true;
+        startX = event.clientX;
+        startScrollLeft = rail.scrollLeft;
+        rail.classList.add('is-dragging');
+        rail.setPointerCapture(event.pointerId);
+      });
+
+      rail.addEventListener('pointermove', (event) => {
+        if (!isPointerDown) return;
+        const dx = event.clientX - startX;
+        rail.scrollLeft = startScrollLeft - dx;
+        updateArrows();
+      });
+
+      const endDrag = (event) => {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+        rail.classList.remove('is-dragging');
+        if (event.pointerId !== undefined && rail.hasPointerCapture(event.pointerId)) {
+          rail.releasePointerCapture(event.pointerId);
+        }
+      };
+
+      rail.addEventListener('pointerup', endDrag);
+      rail.addEventListener('pointercancel', endDrag);
+      rail.addEventListener('lostpointercapture', () => {
+        isPointerDown = false;
+        rail.classList.remove('is-dragging');
+      });
+
+      rail.addEventListener('wheel', (event) => {
+        if (window.innerWidth <= 980) return;
+        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+        event.preventDefault();
+        rail.scrollLeft += event.deltaY;
+        updateArrows();
+      }, { passive: false });
+
+      rail.addEventListener('scroll', updateArrows, { passive: true });
+
+      if (prevButton && nextButton) {
+        const getStep = () => Math.max(rail.clientWidth * 0.78, 320);
+        prevButton.addEventListener('click', () => {
+          rail.scrollBy({ left: -getStep(), behavior: 'smooth' });
+        });
+        nextButton.addEventListener('click', () => {
+          rail.scrollBy({ left: getStep(), behavior: 'smooth' });
+        });
+      }
+
+      updateArrows();
+    });
+  </script>
 </body>
 </html>
