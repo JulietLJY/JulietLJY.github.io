@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jingyao Li | 李靖瑶</title>
+  <meta name="description" content="Jingyao Li (李靖瑶) is a Ph.D. candidate at The Chinese University of Hong Kong, working on foundation large language models.">
+  <style>
+    :root {
+      --bg: #f5ede3;
+      --bg-deep: #d7c2ae;
+      --surface: rgba(255, 248, 240, 0.7);
+      --surface-strong: rgba(255, 250, 246, 0.92);
+      --ink: #221813;
+      --muted: #65564d;
+      --line: rgba(53, 31, 18, 0.12);
+      --accent: #8a3f2d;
+      --accent-soft: #e8c8b9;
+      --shadow: 0 24px 80px rgba(52, 27, 16, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "STFangsong", "FangSong", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 244, 230, 0.9), transparent 34%),
+        radial-gradient(circle at 88% 15%, rgba(138, 63, 45, 0.18), transparent 24%),
+        linear-gradient(180deg, #f8f2ea 0%, #efe2d4 42%, #ead9c7 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .inline-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(10px);
+    }
+
+    .page::before {
+      width: 320px;
+      height: 320px;
+      top: -80px;
+      right: -80px;
+      background: rgba(138, 63, 45, 0.12);
+    }
+
+    .page::after {
+      width: 280px;
+      height: 280px;
+      bottom: 12%;
+      left: -120px;
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(20px);
+      background: rgba(245, 237, 227, 0.72);
+      border-bottom: 1px solid rgba(53, 31, 18, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 56px 0 32px;
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-columns: 1.24fr 0.76fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-photo {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      padding: 42px;
+      backdrop-filter: blur(18px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.64);
+      border: 1px solid rgba(53, 31, 18, 0.08);
+      color: var(--muted);
+      font-size: 0.84rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 20px 0 24px;
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .name-zh {
+      display: inline;
+      margin-left: 10px;
+      font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-family: "STFangsong", "FangSong", "Songti SC", serif;
+      font-weight: 500;
+    }
+
+    .cn-fangsong {
+      font-family: "STFangsong", "FangSong", "Songti SC", serif;
+    }
+
+    .lead {
+      margin: 0 0 14px;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .contact-grid {
+      display: flex;
+      gap: 14px;
+      margin: 28px 0 16px;
+    }
+
+    .contact-card {
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(53, 31, 18, 0.07);
+      border-radius: var(--radius-md);
+    }
+
+    .contact-card span {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .button,
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: #fff7f2;
+      box-shadow: 0 16px 32px rgba(138, 63, 45, 0.22);
+    }
+
+    .ghost-button {
+      border: 1px solid rgba(53, 31, 18, 0.12);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .button:hover,
+    .ghost-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-photo {
+      min-height: 520px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(34,24,19,0.12)),
+        #a35d46;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-caption {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(25, 18, 14, 0.46);
+      color: rgba(255, 248, 241, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 54px 0 10px;
+    }
+
+    .section-title {
+      margin-bottom: 22px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 44px rgba(52, 27, 16, 0.07);
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+    }
+
+    .education-school {
+      margin-bottom: 14px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(138, 63, 45, 0.08);
+      color: #703324;
+      font-size: 0.9rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 44px rgba(52, 27, 16, 0.07);
+    }
+
+    .timeline-date {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 4px;
+      font-size: 1.16rem;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .papers,
+    .papers-secondary {
+      display: grid;
+      gap: 10px;
+    }
+
+    .papers {
+      grid-template-columns: 1fr;
+    }
+
+    .papers-secondary {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 10px;
+    }
+
+    .paper {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,248,243,0.88));
+      border: 1px solid rgba(53, 31, 18, 0.08);
+      box-shadow: 0 14px 30px rgba(52, 27, 16, 0.06);
+    }
+
+    .paper-venue {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #6c2f21;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .papers-secondary .paper-venue {
+      background: var(--accent-soft);
+      color: #6c2f21;
+    }
+
+    .papers-secondary .paper-venue.arxiv {
+      background: rgba(101, 86, 77, 0.14);
+      color: var(--muted);
+    }
+
+    .paper-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+
+    .paper-line .paper-venue {
+      flex: 0 0 auto;
+    }
+
+    .paper-line-text {
+      flex: 1 1 720px;
+      min-width: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .paper-title-line {
+      color: var(--accent);
+      margin-bottom: 2px;
+      font-size: 0.96rem;
+      font-weight: 400;
+    }
+
+    .paper-author-line {
+      color: var(--muted);
+    }
+
+    .paper-title-line em {
+      font-style: italic;
+    }
+
+    .paper-inline-links {
+      display: inline;
+      font-size: 0.96rem;
+      font-weight: 400;
+    }
+
+    .paper-inline-links a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1.2px;
+      text-underline-offset: 2px;
+      margin-left: 8px;
+    }
+
+    .papers-secondary .paper-title-line,
+    .papers-secondary .paper-inline-links a {
+      color: var(--muted);
+    }
+
+    .author-me {
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .subpapers {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255, 250, 246, 0.82);
+      border: 1px solid rgba(53, 31, 18, 0.08);
+      box-shadow: 0 14px 30px rgba(52, 27, 16, 0.05);
+    }
+
+    .subpapers h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .subsection-label {
+      margin: 18px 0 8px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      text-transform: none;
+    }
+
+    .subpaper-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .subpaper-item {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .list-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .list-card li + li {
+      margin-top: 8px;
+    }
+
+    footer {
+      padding: 50px 0 70px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-panel,
+      .grid-two,
+      .list-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .papers-secondary {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        min-height: 420px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner,
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 32px;
+      }
+
+      .hero-copy {
+        padding: 26px;
+      }
+
+      .contact-grid {
+        flex-direction: column;
+      }
+
+      .container {
+        width: min(calc(100% - 24px), var(--max-width));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top">Jingyao Li</a>
+        <nav class="nav">
+          <a href="#about">Education</a>
+          <a href="#experience">Experience</a>
+          <a href="#publications">Publications</a>
+          <a href="#service">Teaching &amp; Honors</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-panel">
+          <div class="hero-copy">
+            <h1>Jingyao Li<span class="name-zh">（李靖瑶）</span></h1>
+            <p class="lead">
+              I am a Ph.D. candidate at The Chinese University of Hong Kong, advised by
+              <a href="https://jiaya.me/" target="_blank" rel="noreferrer">Prof. Jiaya Jia</a>. I completed
+              my undergraduate study at Xi'an Jiaotong University in the Special Class for the Gifted Young
+              (<span class="cn-fangsong">少年班</span>) and the Qian Xuesen Honor Class (<span class="cn-fangsong">钱学森班</span>).
+            </p>
+            <p class="lead">
+              I am currently interested in foundation large language models, especially mid-training
+              and agentic reinforcement learning.
+            </p>
+
+            <div class="contact-grid">
+            </div>
+
+            <div class="hero-actions">
+              <a class="button" href="mailto:jingyao.li@link.cuhk.edu.hk">Get in Touch · jingyao.li@link.cuhk.edu.hk</a>
+              <a class="ghost-button" href="images/jingyaoli.pdf" target="_blank" rel="noreferrer">View CV</a>
+            </div>
+          </div>
+
+          <div class="hero-photo">
+            <img src="images/jingyaoli.jpg" alt="Portrait of Jingyao Li">
+            <div class="photo-caption">
+              Towards Accurate and Efficient Representation Learning:<br>
+              From Computer Vision to Large Language Models
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-title">
+            <h2>Education</h2>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-date">Aug. 2022 - Jul. 2026</div>
+              <div>
+                <h3>The Chinese University of Hong Kong</h3>
+                <p>
+                  Ph.D. in Computer Science. I am part of the <a class="inline-link" href="https://jiaya.me/members/" target="_blank" rel="noreferrer">DVLab</a>
+                  at CUHK, working with <a class="inline-link" href="https://jiaya.me/" target="_blank" rel="noreferrer">Prof. Jiaya Jia</a>.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-date">Sept. 2018 - Jul. 2022</div>
+              <div>
+                <h3>Xi'an Jiaotong University</h3>
+                <p>
+                  B.Eng. in Automation. Special Class for the Gifted Young and Qian Xuesen Honor Class.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="container">
+          <div class="section-title">
+            <h2>Experience</h2>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-date">Apr. 2024 - Nov. 2024</div>
+              <div>
+                <h3>Huawei Noah's Ark Lab · Research Intern</h3>
+                <p>
+                  Worked on query-as-computation for large models and first-authored
+                  <em>QuickLLaMA: Query-aware Inference Acceleration for Large Language Models</em>.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-date">Dec. 2024 - Jul. 2025</div>
+              <div>
+                <h3>Alibaba Group's Tongyi Lab · Research Intern</h3>
+                <p>
+                  Participated in large-scale model pre-training, led work on a continual pre-training
+                  QA construction pipeline, and contributed data and training solutions to Qwen3.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="publications">
+        <div class="container">
+          <div class="section-title">
+            <h2>Publications</h2>
+          </div>
+
+          <div class="papers">
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">CVPR 2023</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Rethinking Out-of-Distribution Detection: Masked Image Modeling is All You Need. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2302.02615" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/MOOD" target="_blank" rel="noreferrer">Code</a><a href="https://cvpr2023.thecvf.com/virtual/2023/poster/23070" target="_blank" rel="noreferrer">Project</a></span></div>
+                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Zexin He, Shu Liu, Jiaya Jia.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">TPAMI 2023</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">BAL: Balancing Diversity and Novelty for Active Learning. <span class="paper-inline-links"><a href="https://ieeexplore.ieee.org/abstract/document/10372131" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/JulietLJY/BAL" target="_blank" rel="noreferrer">Code</a></span></div>
+                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">TPAMI 2024</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">MOODv2: Masked Image Modeling for Out-of-Distribution Detection. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2401.02611" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/MOOD" target="_blank" rel="noreferrer">Code</a></span></div>
+                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shaozuo Yu, Shu Liu, Jiaya Jia.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">TPAMI 2024</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">TagCLIP: Improving Discrimination Ability of Open-Vocabulary Semantic Segmentation. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2304.07547" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/TagCLIP" target="_blank" rel="noreferrer">Code</a></span></div>
+                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Shengju Qian, Jiaya Jia.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">COLING 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">QuickLLaMA: Query-aware Inference Acceleration for Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2406.07528" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Q-LLM" target="_blank" rel="noreferrer">Code</a></span></div>
+                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Han Shi, Xin Jiang, Zhenguo Li, Hong Xu, Jiaya Jia.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">TPAMI 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">VLPose: Bridging the Domain Gap in Pose Estimation with Language-Vision Tuning. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2402.14456" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/JulietLJY/VLPose" target="_blank" rel="noreferrer">Code</a></span></div>
+                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Pengguang Chen, Xuan Ju, Hong Xu, Jiaya Jia.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">EMNLP 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Logits-Based Finetuning. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2505.24461" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Logits-Based-Finetuning" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/datasets/JingyaoLi/Science-Logits-1.2M" target="_blank" rel="noreferrer">Data</a></span></div>
+                  <div class="paper-author-line"><span class="author-me">Jingyao Li</span>, Senqiao Yang, Sitong Wu, Han Shi, Chuanyang Zheng, Hong Xu, Jiaya Jia.</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <h3 class="subsection-label">Other Publications</h3>
+          <div class="papers-secondary">
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">NeurIPS 2024</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">MR-BEN: A Comprehensive Meta-Reasoning Benchmark for Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2406.13975" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Mr-Ben" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/datasets/Randolphzeng/Mr-Ben" target="_blank" rel="noreferrer">Dataset</a><a href="https://randolph-zeng.github.io/Mr-Ben.github.io/" target="_blank" rel="noreferrer">Project</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">NeurIPS 2024</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">DAPE: Data-Adaptive Positional Encoding for Length Extrapolation. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2405.14722" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/chuanyang-Zheng/DAPE" target="_blank" rel="noreferrer">Code</a><a href="https://news.qq.com/rain/a/20241012A04J4Z00" target="_blank" rel="noreferrer">Coverage</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">CVPR 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Visionzip: Longer is Better but Not Necessary in Vision Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/pdf/2412.04467" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/VisionZip" target="_blank" rel="noreferrer">Code</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">CVPR 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">DreamOmni: Unified Image Generation and Editing. <span class="paper-inline-links"><a href="https://arxiv.org/pdf/2412.17098" target="_blank" rel="noreferrer">Paper</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">ACL 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">DAPE V2: Process Attention Score as Feature Map for Length Extrapolation. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2410.04798" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/chuanyang-Zheng/DAPE" target="_blank" rel="noreferrer">Code</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">ICCV 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Lyra: An Efficient and Speech-Centric Framework for Omni-Cognition. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2412.09501" target="_blank" rel="noreferrer">Paper</a><a href="https://github.com/dvlab-research/Lyra" target="_blank" rel="noreferrer">Code</a><a href="https://huggingface.co/collections/zszhong/lyra-model-674ea5bb3b39ff8f15de75fc" target="_blank" rel="noreferrer">Models</a><a href="https://103.170.5.190:17860/" target="_blank" rel="noreferrer">Demo</a><a href="https://lyra-omni.github.io/" target="_blank" rel="noreferrer">Project</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">NeurIPS 2025</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">DLoFT: Gradient-Decoupled Fine-Tuning for Generalizable Long Chain-of-Thought Reasoning. <span class="paper-inline-links"><a href="https://neurips.cc/virtual/2025/poster/119852" target="_blank" rel="noreferrer">Webpage</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">CVPR 2026</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Unlocking Token Rewards via Training-Free Reward Attribution. <span class="paper-inline-links"><a href="https://openreview.net/forum?id=A6cIIUOzVT&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3Dthecvf.com%2FCVPR%2F2026%2FConference%2FAuthors%23your-submissions)" target="_blank" rel="noreferrer">Paper</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">CVPR 2026</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">DreamOmni2: Multimodal Instruction-based Editing and Generation. <span class="paper-inline-links"><a href="https://github.com/dvlab-research/DreamOmni2" target="_blank" rel="noreferrer">GitHub</a><a href="https://pbihao.github.io/projects/DreamOmni2/index.html" target="_blank" rel="noreferrer">Webpage</a><a href="https://huggingface.co/spaces/wcy1122/DreamOmni2-Edit" target="_blank" rel="noreferrer">Demo-edit</a><a href="https://huggingface.co/spaces/wcy1122/DreamOmni2-Gen" target="_blank" rel="noreferrer">Demo-gen</a><a href="https://www.youtube.com/watch?v=8xpoiRK57uU" target="_blank" rel="noreferrer">Video</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue">ICLR 2026</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Understanding the Mixture-of-Expert with Nadaraya-Watson Kernel. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2509.25913" target="_blank" rel="noreferrer">Paper</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">MoTCoder: Elevating Large Language Models with Modular of Thought for Challenging Programming Tasks. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2312.15960" target="_blank" rel="noreferrer">Paper</a><a href="https://huggingface.co/JingyaoLi/MoTCoder-32B-V1.5" target="_blank" rel="noreferrer">Model</a><a href="https://github.com/dvlab-research/MoTCoder/" target="_blank" rel="noreferrer">Code</a><a href="https://zhuanlan.zhihu.com/p/1891097350497338692" target="_blank" rel="noreferrer">Coverage</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">RoboCoder: Robotic Learning from Basic Skills to General Tasks with Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2406.03757" target="_blank" rel="noreferrer">Paper</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">End-to-End QA Construction Pipeline for Continual Pre-training of Large Language Models.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">DynamicBench: Evaluating Real-Time Report Generation in Large Language Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2506.21343" target="_blank" rel="noreferrer">Paper</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Mixture-of-Scores: Robust Image-Text Data Quality Score via Three Lines of Code.</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">MGM-Omni: Scaling Omni LLMs to Personalized Long-Horizon Speech. <span class="paper-inline-links"><a href="https://mgm-omni.notion.site/MGM-Omni-An-Open-source-Omni-Chatbot-2395728e0b0180149ac9f24683fc9907" target="_blank" rel="noreferrer">Blog</a><a href="https://huggingface.co/papers/2509.25131" target="_blank" rel="noreferrer">Paper</a><a href="https://huggingface.co/collections/wcy1122/mgm-omni-6896075e97317a88825032e1" target="_blank" rel="noreferrer">Models</a><a href="https://huggingface.co/datasets/wcy1122/Long-TTS-Eval" target="_blank" rel="noreferrer">Benchmark</a><a href="https://huggingface.co/spaces/wcy1122/MGM-Omni" target="_blank" rel="noreferrer">Demo</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Answer-Consistent Chain-of-thought Reinforcement Learning For Multi-modal Large Langauge Models. <span class="paper-inline-links"><a href="https://arxiv.org/abs/2510.10104" target="_blank" rel="noreferrer">Paper</a></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-line">
+                <span class="paper-venue arxiv">Arxiv</span>
+                <div class="paper-line-text">
+                  <div class="paper-title-line">Multi-Scale Group Relative Policy Optimization for Large Language Models. <span class="paper-inline-links"><a href="https://openreview.net/forum?id=ktHj6YazEE" target="_blank" rel="noreferrer">Paper</a></span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="service">
+        <div class="container">
+          <div class="section-title">
+            <h2>Teaching & Honors</h2>
+          </div>
+
+          <div class="list-grid">
+            <div class="card list-card">
+              <h3>Teaching</h3>
+              <ul>
+                <li>(CENG2010) Digital Logic Design Laboratory, 2023 Spring</li>
+                <li>(CSCI3250) Computers and Society, 2022 Fall</li>
+              </ul>
+            </div>
+
+            <div class="card list-card">
+              <h3>Awards</h3>
+              <ul>
+                <li>National Scholarship, 2020</li>
+                <li>Meritorious Winner, American Mathematical Contest in Modeling, 2019</li>
+                <li>First Prize, China Undergraduate Physics Tournament, 2018</li>
+                <li>Second Prize, Xi'an Jiaotong University Challenge Cup, 2019</li>
+              </ul>
+            </div>
+
+            <div class="card list-card">
+              <h3>Leadership</h3>
+              <ul>
+                <li>Vice President, Youth Volunteers Association, 2019-2020</li>
+                <li>Minister of the Secretariat, Youth Volunteers Association, 2018-2019</li>
+                <li>Administrative Department Member, Youth Volunteers Association, 2017-2018</li>
+                <li>Secretary of the Student Union, Suzhou Middle School, 2016-2017</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>Jingyao Li · <a href="mailto:jingyao.li@link.cuhk.edu.hk">jingyao.li@link.cuhk.edu.hk</a> · <a href="images/jingyaoli.pdf" target="_blank" rel="noreferrer">CV</a></p>
+        <p>Last updated: March 2026</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
